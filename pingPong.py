@@ -1,4 +1,5 @@
-# pong_1_2.py: Clase PelotaPong
+# pong_1_3.py: Rebote de la pelota
+
 
 import pygame
 from pygame.locals import QUIT
@@ -33,6 +34,15 @@ class PelotaPong:
         self.x += self.dir_x
         self.y += self.dir_
 
+    def rebotar(self):
+        if self.x <= 0:
+            self.dir_x = -self.dir_x
+        if self.x + self.ancho >= VENTANA_HORI:
+            self.dir_x = -self.dir_x
+        if self.y <= 0:
+            self.dir_y = -self.dir_y
+        if self.y + self.alto >= VENTANA_VERT:
+            self.dir_y = -self.dir_y
 
 
 def main():
@@ -43,10 +53,16 @@ def main():
     ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
     pygame.display.set_caption("Pong 1")
 
+    pelota = PelotaPong("bola_roja.png")
+
     # Bucle principal
     jugando = True
     while jugando:
+        pelota.mover()
+        pelota.rebotar()
+        
         ventana.fill(BLANCO)
+        ventana.blit(pelota.imagen, (pelota.x, pelota.y))
 
         for event in pygame.event.get():
             if event.type == QUIT:
