@@ -5,7 +5,8 @@ https://github.com/juaannavarro/ping-pong.git
 
 Hemos diseñado un juego de ping pong en Python y esqematizado el proceso en issues dentro de milestones desde Github para organizar los pasos realizados.
 El código del juego es el siguiente:
-```# pong_1_9.py: Mostrar puntuación de la partida
+```
+# pong_1_9.py: Mostrar puntuación de la partida
 
 import random
 import pygame
