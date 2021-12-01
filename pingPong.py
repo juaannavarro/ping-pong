@@ -11,6 +11,7 @@ FPS = 60  # Fotogramas por segundo
 BLANCO = (255, 255, 255)  # Color del fondo de la ventana (RGB)
 NEGRO = (0, 0, 0)  # Color del texto (RGB)
 
+
 class PelotaPong:
     def __init__(self, fichero_imagen):
         # --- Atributos de la Clase ---
@@ -26,10 +27,10 @@ class PelotaPong:
         self.y = VENTANA_VERT / 2 - self.alto / 2
 
         # Dirección de movimiento de la Pelota
-        self.dir_x = random.choice([-5, 5])
-        self.dir_y = random.choice([-5, 5])
+        self.dir_x = random.choice([-10, 10])
+        self.dir_y = random.choice([-10, 10])
 
-         # Puntuación de la pelota
+        # Puntuación de la pelota
         self.puntuacion = 0
         self.puntuacion_ia = 0
 
@@ -41,10 +42,13 @@ class PelotaPong:
         if self.x <= -self.ancho:
             self.reiniciar()
             self.puntuacion_ia += 1
-        if self.x >= VENTANA_HORI:
+        if self.x >= 800:
             self.reiniciar()
             self.puntuacion += 1
-
+        if self.y <= 0:
+            self.dir_y = -self.dir_y
+        if self.y + self.alto >= VENTANA_VERT:
+            self.dir_y = -self.dir_y
 
     def reiniciar(self):
         self.x = VENTANA_HORI / 2 - self.ancho / 2
@@ -55,7 +59,7 @@ class PelotaPong:
 
 class RaquetaPong:
     def __init__(self):
-        self.imagen = pygame.image.load("raqueta.png").convert_alpha()
+        self.imagen = pygame.image.load("raqueta_3.jpg").convert_alpha()
 
         # --- Atributos de la Clase ---
 
@@ -75,7 +79,7 @@ class RaquetaPong:
             self.y = 0
         if self.y + self.alto >= VENTANA_VERT:
             self.y = VENTANA_VERT - self.alto
-    
+
     def mover_ia(self, pelota):
         if self.y > pelota.y:
             self.dir_y = -3
@@ -85,7 +89,6 @@ class RaquetaPong:
             self.dir_y = 0
 
         self.y += self.dir_y
-
 
     def golpear(self, pelota):
         if (
@@ -97,6 +100,15 @@ class RaquetaPong:
             pelota.dir_x = -pelota.dir_x
             pelota.x = self.x + self.ancho
 
+    def golpear_ia(self, pelota):
+        if (
+            pelota.x + pelota.ancho > self.x
+            and pelota.x < self.x + self.ancho
+            and pelota.y + pelota.alto > self.y
+            and pelota.y < self.y + self.alto
+        ):
+            pelota.dir_x = -pelota.dir_x
+            pelota.x = self.x - pelota.ancho
 
 def main():
     # Inicialización de Pygame
@@ -104,11 +116,12 @@ def main():
 
     # Inicialización de la superficie de dibujo (display surface)
     ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
-    pygame.display.set_caption("Pong 7")
+    pygame.display.set_caption("Pong 9")
 
     # Inicialización de la fuente
     fuente = pygame.font.Font(None, 60)
-    pelota = PelotaPong("bola_roja.png")
+
+    pelota = PelotaPong("bola_roja_2.png")
 
     raqueta_1 = RaquetaPong()
     raqueta_1.x = 60
