@@ -27,8 +27,8 @@ class PelotaPong:
         self.y = VENTANA_VERT / 2 - self.alto / 2
 
         # Dirección de movimiento de la Pelota
-        self.dir_x = random.choice([-10, 10])
-        self.dir_y = random.choice([-10, 10])
+        self.dir_x = random.choice([-7, 7])
+        self.dir_y = random.choice([-7, 7])
 
         # Puntuación de la pelota
         self.puntuacion = 0
@@ -59,7 +59,7 @@ class PelotaPong:
 
 class RaquetaPong:
     def __init__(self):
-        self.imagen = pygame.image.load("raqueta_3.jpg").convert_alpha()
+        self.imagen = pygame.image.load("raqueta.jpg").convert_alpha()
 
         # --- Atributos de la Clase ---
 
@@ -121,7 +121,7 @@ def main():
     # Inicialización de la fuente
     fuente = pygame.font.Font(None, 60)
 
-    pelota = PelotaPong("bola_roja_2.png")
+    pelota = PelotaPong("bola_roja.png")
 
     raqueta_1 = RaquetaPong()
     raqueta_1.x = 60
