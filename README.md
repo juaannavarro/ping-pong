@@ -3,7 +3,7 @@
 Mi direccion de GitHub para este repositorio es la siguiente: [GitHub](https://github.com/juaannavarro/ping-pong.git)
 https://github.com/juaannavarro/ping-pong.git
 
-Hemos diseñado un juego de ping pong en Python y esquematizado el proceso en issues dentro de milestones desde Github para organizar los pasos realizados.
+Hemos diseñado un juego de ping pong en Python y esquematizado el proceso con issues y milestones desde Github para organizar los pasos realizados.
 El código del juego es el siguiente:
 ```
 # pong_1_9.py: Mostrar puntuación de la partida
